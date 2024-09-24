@@ -10,6 +10,12 @@ class CustomToast {
     Widget? image,
     Color? shadhowColor,
     TextStyle textStyle = const TextStyle(color: Colors.white),
+    double? imageWidth,
+    double? imageHeight,
+    double paddingHorizontal =
+        30.0, // Optional horizontal padding with default value
+    double paddingVertical =
+        10.0, // Optional vertical padding with default value
   }) {
     final overlay = Overlay.of(context);
     final overlayEntry = OverlayEntry(
@@ -20,7 +26,11 @@ class CustomToast {
         textStyle: textStyle,
         duration: duration,
         image: image,
-        shadhowColor: shadhowColor,
+        shadowColor: shadhowColor,
+        imageWidth: imageWidth,
+        imageHeight: imageHeight,
+        paddingHorizontal: paddingHorizontal,
+        paddingVertical: paddingVertical,
       ),
     );
 
@@ -36,7 +46,11 @@ class ToastMessage extends StatefulWidget {
   final Color backgroundColor;
   final Widget? image;
   final TextStyle textStyle;
-  final Color? shadhowColor;
+  final Color? shadowColor;
+  final double? imageWidth;
+  final double? imageHeight;
+  final double paddingHorizontal;
+  final double paddingVertical;
 
   const ToastMessage({
     super.key,
@@ -45,8 +59,12 @@ class ToastMessage extends StatefulWidget {
     required this.duration,
     required this.backgroundColor,
     this.image,
-    this.shadhowColor,
+    this.shadowColor,
     required this.textStyle,
+    this.imageWidth,
+    this.imageHeight,
+    this.paddingHorizontal = 30.0, // Default horizontal padding
+    this.paddingVertical = 10.0, // Default vertical padding
   });
 
   @override
@@ -111,18 +129,20 @@ class __ToastMessageState extends State<ToastMessage>
             child: Container(
               constraints: BoxConstraints(
                   maxWidth: MediaQuery.of(context).size.width - 40),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 30.0,
-                vertical: 10.0,
+              padding: EdgeInsets.symmetric(
+                horizontal:
+                    widget.paddingHorizontal, // Use custom or default padding
+                vertical:
+                    widget.paddingVertical, // Use custom or default padding
               ),
               decoration: BoxDecoration(
                 color: widget.backgroundColor,
                 borderRadius: BorderRadius.circular(8.0),
                 boxShadow: [
                   BoxShadow(
-                    color: widget.shadhowColor == null
+                    color: widget.shadowColor == null
                         ? Colors.black.withOpacity(0.2)
-                        : widget.shadhowColor!,
+                        : widget.shadowColor!,
                     offset: const Offset(2, 4),
                     blurRadius: 6,
                     spreadRadius: 1,
@@ -131,16 +151,20 @@ class __ToastMessageState extends State<ToastMessage>
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min, // Keep the row compact
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   if (widget.image != null) ...[
-                    SizedBox(width: 40, height: 40, child: widget.image!),
+                    SizedBox(
+                      width: widget.imageWidth ?? 30,
+                      height: widget.imageHeight ?? 30,
+                      child: widget.image!,
+                    ),
                     const SizedBox(width: 8),
                   ],
                   Flexible(
                     child: Text(
                       widget.message,
-                      maxLines: 3, // Limit to 3 lines
+                      maxLines: 3,
                       style: widget.textStyle,
                       overflow: TextOverflow.ellipsis,
                       softWrap: true,

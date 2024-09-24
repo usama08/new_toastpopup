@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:new_toast/constant/app_images.dart';
 import 'package:new_toast/package/new_toast.dart';
-import '../../constant/svg.dart';
 
 class ExampleToastScreen extends StatelessWidget {
   const ExampleToastScreen({super.key});
@@ -17,7 +16,7 @@ class ExampleToastScreen extends StatelessWidget {
               context,
               backgroundColor: Colors.white,
               shadhowColor: Colors.green.withOpacity(0.5),
-              image: SvgPicture.asset(pdf),
+              image: Image.asset(mark),
               message: "This is a custom toast message",
               textStyle: const TextStyle(color: Colors.black),
               position: ToastPosition.right,
