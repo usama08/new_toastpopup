@@ -19,7 +19,7 @@ class ExampleToastScreen extends StatelessWidget {
               image: Image.asset(mark),
               message: "This is a custom toast message",
               textStyle: const TextStyle(color: Colors.black),
-              position: ToastPosition.right,
+              position: ToastPosition.left,
             );
           },
           child: const Text("Show Toast"),

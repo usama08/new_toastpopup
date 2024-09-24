@@ -63,8 +63,8 @@ class ToastMessage extends StatefulWidget {
     required this.textStyle,
     this.imageWidth,
     this.imageHeight,
-    this.paddingHorizontal = 30.0, // Default horizontal padding
-    this.paddingVertical = 10.0, // Default vertical padding
+    this.paddingHorizontal = 30.0,
+    this.paddingVertical = 10.0,
   });
 
   @override
@@ -103,7 +103,7 @@ class __ToastMessageState extends State<ToastMessage>
         return const Offset(1.0, 0.0);
       case ToastPosition.top:
       default:
-        return const Offset(0.0, -1.0); // Slide down from top
+        return const Offset(0.0, -1.0);
     }
   }
 
@@ -116,16 +116,15 @@ class __ToastMessageState extends State<ToastMessage>
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top:
-          widget.position == ToastPosition.top ? 50.0 : null, // Safe top margin
-      left: widget.position == ToastPosition.left ? 20.0 : null,
+      top: widget.position == ToastPosition.top ? 10.0 : null,
+      left: widget.position == ToastPosition.left ? 5.0 : null,
       right: widget.position == ToastPosition.right ? 20.0 : null,
       child: SlideTransition(
         position: _offsetAnimation,
         child: Material(
           color: Colors.transparent,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 30, right: 20, left: 40),
             child: Container(
               constraints: BoxConstraints(
                   maxWidth: MediaQuery.of(context).size.width - 40),
