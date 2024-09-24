@@ -6,10 +6,10 @@ class CustomToast {
     required String message,
     ToastPosition position = ToastPosition.top,
     Duration duration = const Duration(seconds: 3),
-    Color backgroundColor = Colors.black87,
+    Color backgroundColor = Colors.white,
     Widget? image,
     Color? shadhowColor,
-    TextStyle textStyle = const TextStyle(color: Colors.white),
+    TextStyle textStyle = const TextStyle(color: Colors.black),
     double? imageWidth,
     double? imageHeight,
     double paddingHorizontal =
