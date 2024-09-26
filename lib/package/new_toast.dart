@@ -12,10 +12,8 @@ class CustomToast {
     TextStyle textStyle = const TextStyle(color: Colors.black),
     double? imageWidth,
     double? imageHeight,
-    double paddingHorizontal =
-        30.0, // Optional horizontal padding with default value
-    double paddingVertical =
-        10.0, // Optional vertical padding with default value
+    double paddingHorizontal = 30.0,
+    double paddingVertical = 10.0,
   }) {
     final overlay = Overlay.of(context);
     final overlayEntry = OverlayEntry(
@@ -68,6 +66,7 @@ class ToastMessage extends StatefulWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   __ToastMessageState createState() => __ToastMessageState();
 }
 
@@ -75,7 +74,6 @@ class __ToastMessageState extends State<ToastMessage>
     with SingleTickerProviderStateMixin {
   late Animation<Offset> _offsetAnimation;
   late AnimationController _animationController;
-
   @override
   void initState() {
     super.initState();
@@ -129,10 +127,8 @@ class __ToastMessageState extends State<ToastMessage>
               constraints: BoxConstraints(
                   maxWidth: MediaQuery.of(context).size.width - 40),
               padding: EdgeInsets.symmetric(
-                horizontal:
-                    widget.paddingHorizontal, // Use custom or default padding
-                vertical:
-                    widget.paddingVertical, // Use custom or default padding
+                horizontal: widget.paddingHorizontal,
+                vertical: widget.paddingVertical,
               ),
               decoration: BoxDecoration(
                 color: widget.backgroundColor,
